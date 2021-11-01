@@ -11,7 +11,7 @@ import os
 
 order_path = 'data/order.csv'
 detail_path = 'static/detail.txt'
-detail_url = 'https://huuhou47.herokuapp.com/detail'
+detail_url = 'https://huuhou48.herokuapp.com/detail'
 
 
 def getData():
