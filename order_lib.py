@@ -129,7 +129,7 @@ def printStatistic(foods, menu):
     reply += ( '共' + str(total) + '份' + str(total_price) + '元' )
     return reply
     
-def showDetailAsHtml(orders, menu):
+def showDetailAsHtml(orders, menu, domain_name):
     if os.path.isfile(detail_path):
         os.remove(detail_path)
     order_no = 1          
@@ -139,7 +139,7 @@ def showDetailAsHtml(orders, menu):
         with open(detail_path, 'a+', encoding = 'utf-8') as detailFile:    
             detailFile.write( str(order_no) + '. ' + order[0] + ' / ' + food_name + ' / ' + food_price + '元\n' )
         order_no += 1
-    return detail_url
+    return domain_name + 'detail'
 
 
 def printDetail(orders, menu):
