@@ -99,36 +99,35 @@ def handle_message(event):
         order_lib.clear()
         reply = '清除資料'  
         
-    if not order_lib.hasRestaurant():
-        return 
-                      
-    if command == '點':
-        user_name = line_bot_api.get_profile(userId).display_name
-        reply = order_lib.addOrder(user_name, parameters)
-                      
-    elif command == '取消':
-        user_name = line_bot_api.get_profile(userId).display_name
-        reply = order_lib.cancelOrder(user_name, parameters)
-        
-    elif command == '統計':        
-        orders = order_lib.getOrder()  
-        restaurant = order_lib.getRestaurant()
-        menu = order_lib.getMenu(restaurant)        
-        foods = order_lib.countOrder(orders)      
-        reply = order_lib.printStatistic(foods, menu)
-        reply += ('\n' + order_lib.showDetailAsHtml(orders, menu))
-        
-    elif command == '明細':
-        orders = order_lib.getOrder()  
-        restaurant = order_lib.getRestaurant()
-        menu = order_lib.getMenu(restaurant)  
-        reply = order_lib.printDetail(orders, menu)
-        
-    elif command == '截止': 
-        admin = order_lib.checkAuthority(userId)
-        if not admin:
-            return
-        order_lib.setRestaurant('')
+    if order_lib.hasRestaurant(): 
+                       
+        if command == '點':            
+            user_name = line_bot_api.get_profile(userId).display_name
+            reply = order_lib.addOrder(user_name, parameters)
+                          
+        elif command == '取消':
+            user_name = line_bot_api.get_profile(userId).display_name
+            reply = order_lib.cancelOrder(user_name, parameters)
+            
+        elif command == '統計':      
+            orders = order_lib.getOrder()  
+            restaurant = order_lib.getRestaurant()
+            menu = order_lib.getMenu(restaurant)        
+            foods = order_lib.countOrder(orders)      
+            reply = order_lib.printStatistic(foods, menu)
+            reply += ('\n' + order_lib.showDetailAsHtml(orders, menu, domain_name))
+            
+        elif command == '明細':
+            orders = order_lib.getOrder()  
+            restaurant = order_lib.getRestaurant()
+            menu = order_lib.getMenu(restaurant)  
+            reply = order_lib.printDetail(orders, menu)
+            
+        elif command == '截止': 
+            admin = order_lib.checkAuthority(userId)
+            if not admin:
+                return
+            order_lib.setRestaurant('')   
         
     
     
