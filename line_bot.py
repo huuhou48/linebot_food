@@ -57,7 +57,7 @@ description = '指令輸入格式:\n\
 (指令)/(內容1)/(內容2)...\n\
 \n\
 指令:\n\
-說明、吃、點、取消、統計、截止、clear'
+說明、吃、點、取消、統計、截止、clear\n\
 詳細說明請見https://github.com/huuhou48/linebot_food'
 
 # decorator 判斷 event 為 MessageEvent
