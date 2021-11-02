@@ -21,7 +21,8 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 app = Flask(__name__)
 line_bot_api = LineBotApi('NRYJRBNY5+R4Owlz39xqrbXj6QjXUIxM0jFikC+nSMSJHfi+fqDCkbjbDWw6dbpHT3Wt/mLhotu5MPsTwOIbXX2Yp4EUYO3N1LQBcayT44G6/tmbhs6Bss4QMoZWzqYKIjGbG0mjMlRghbieIZwWDQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('6f6840dac6dd85aadc37a8d2ce0686b0')
-
+app_name = 'huuhou48'
+domain_name = 'https://' + app_name + '.herokuapp.com/'
 
 @app.route("/")
 def home():
