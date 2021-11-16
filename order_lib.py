@@ -108,10 +108,6 @@ def getOrder():
         orders = list(csv.reader(orderFile))
     return orders
 
-def remark(user_name, orders):
-    with open(detail_path, 'a+', encoding = 'utf-8') as detailFile:       
-        detailFile.write(user_name + ':' + orders + '\n')          
-    return '收到您的特殊要求'
 
 def countOrder(orders):
     foods = {}

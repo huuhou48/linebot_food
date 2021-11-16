@@ -24,6 +24,9 @@ handler = WebhookHandler('6f6840dac6dd85aadc37a8d2ce0686b0')
 app_name = 'huuhou48'
 domain_name = 'https://' + app_name + '.herokuapp.com/'
 
+
+restaurants = ['大盛','小煮角','六星','日日佳','甲一','皇上皇','華圓','寶多福','小吃','八方雲集','十方緣','可莉','好味麵食館','星期一開心','福德炒飯','糧倉']
+
 @app.route("/")
 def home():
     return 'Hi'
@@ -57,7 +60,7 @@ description = '指令輸入格式:\n\
 (指令)/(內容1)/(內容2)...\n\
 \n\
 指令:\n\
-說明、吃、點、取消、統計、截止、clear\n\
+說明、餐廳、吃、點、取消、統計、截止、clear\n\
 詳細說明請見https://github.com/huuhou48/linebot_food'
 
 # decorator 判斷 event 為 MessageEvent
@@ -82,8 +85,12 @@ def handle_message(event):
     
     if command == '說明':
         reply = description
-            
-    if command == '吃':
+
+    elif command == '餐廳':
+        for restaurant in restaurants:
+            reply += ( restaurant + '\n' )
+
+    elif command == '吃':
         admin = order_lib.checkAuthority(userId)
         if not admin:
             return         
@@ -94,7 +101,7 @@ def handle_message(event):
         else:
             reply = '查無此餐廳'
             
-    if command == 'clear': 
+    elif command == 'clear': 
         admin = order_lib.checkAuthority(userId)
         if not admin:
             return    
@@ -125,9 +132,6 @@ def handle_message(event):
             menu = order_lib.getMenu(restaurant)  
             reply = order_lib.printDetail(orders, menu)
 
-        elif command == '備註':
-            user_name = line_bot_api.get_profile(userId).display_name
-            reply = order_lib.remark(user_name, parameters)
            
         elif command == '截止': 
             admin = order_lib.checkAuthority(userId)
