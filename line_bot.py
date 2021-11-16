@@ -124,7 +124,11 @@ def handle_message(event):
             restaurant = order_lib.getRestaurant()
             menu = order_lib.getMenu(restaurant)  
             reply = order_lib.printDetail(orders, menu)
-            
+
+        elif command == '備註':
+            user_name = line_bot_api.get_profile(userId).display_name
+            reply = order_lib.remark(user_name, parameters)
+           
         elif command == '截止': 
             admin = order_lib.checkAuthority(userId)
             if not admin:

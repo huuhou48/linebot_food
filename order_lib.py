@@ -69,7 +69,7 @@ def printMenu(restaurant):
     for food in menu:
         reply += ( food[0] + '. ' + food[1] + ' ' + food[2] + '\n' )  
     return reply
-
+  
 def checkValidity(order):
     menu = getMenu(getRestaurant())
     if order.isnumeric():
@@ -78,7 +78,7 @@ def checkValidity(order):
     return False
     
 def addOrder(user_name, orders):
-    orders = orders.split('/') 
+    orders = orders.split('/')  
     with open('data/order.csv', 'a+', encoding = 'utf-8') as orderFile:        
         for order in orders:
             if checkValidity(order):
@@ -92,10 +92,11 @@ def cancelOrder(user_name, cancel_orders):
     os.remove('data/order.csv')
     if cancel_orders:
         cancel_orders = cancel_orders.split('/')
-        for cancel_order in cancel_orders:
-            for order in orders:
-                if order[0] != user_name or order[1] != cancel_order:
-                    addOrder(order[0], order[1])
+        for order in orders:
+            if order[0] != user_name:
+                addOrder(order[0], order[1])
+            elif order[1] not in cancel_orders:
+                  addOrder(order[0], order[1])
     else:
         for order in orders:
             if order[0] != user_name:
@@ -106,6 +107,11 @@ def getOrder():
     with open('data/order.csv', newline = '', encoding = 'utf-8') as orderFile:
         orders = list(csv.reader(orderFile))
     return orders
+
+def remark(user_name, orders):
+    with open('data/order.csv', 'a+', encoding = 'utf-8') as orderFile:        
+        orderFile.write(user_name + ':' + orders + '\n')          
+    return '收到您的特殊要求'
 
 def countOrder(orders):
     foods = {}
