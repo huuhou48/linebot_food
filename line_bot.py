@@ -91,11 +91,10 @@ def handle_message(event):
             reply += ( restaurant + '\n' )
     
     elif command == '推薦':
-        for restaurant in restaurants:
-            if parameters == '八方雲集':
-                reply += ( '招牌鍋貼不錯吃,推薦指數四顆星' + '\n' )
-            elif parameters == '十方緣':
-                reply += ( '白乾加醋味道更絕,炒麵只有早上有QQ' + '\n' )    
+        if parameters == '八方雲集':
+            reply += ( '招牌鍋貼不錯吃,推薦指數四顆星' + '\n' )
+        elif parameters == '十方緣':
+            reply += ( '白乾加醋味道更絕,炒麵只有早上有QQ' + '\n' )    
 
     elif command == '吃':
         admin = order_lib.checkAuthority(userId)
