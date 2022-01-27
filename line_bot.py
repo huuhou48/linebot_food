@@ -151,5 +151,5 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(reply))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # 意思是直接執行此文件沒有import其他文件
     app.run()
