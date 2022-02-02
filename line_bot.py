@@ -93,7 +93,7 @@ def handle_message(event):
             reply += ( restaurant + '\n' )
 
     elif command == '抽餐廳':
-            reply += ( '今天電腦選的餐廳是: ' + random.choice(restaurants) + ', 恭喜幸運兒!!!' + '.\n' )
+            reply += ( '今天修美食雷達選的餐廳是 : ' + random.choice(restaurants) + ', 恭喜幸運兒!!!' + '\n' )
     
     elif command == '推薦':
         if parameters == '八方雲集':
