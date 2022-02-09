@@ -33,7 +33,7 @@ restaurants = ['大盛','小煮角','六星','日日佳','甲一','皇上皇','�
 def home():
     return 'Hi'
 
-# Webhook callback endpoint
+# Webhook callback endpoint(收訊息)
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -68,6 +68,7 @@ description = '指令輸入格式:\n\
 # decorator 判斷 event 為 MessageEvent
 # event.message 為 TextMessage 
 # 所以此為處理 TextMessage 的 handler
+#下面為發訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
@@ -75,6 +76,7 @@ def handle_message(event):
     
     # get user id and message
     userId = event.source.user_id
+    #接收到的訊息
     message = event.message.text
     
     # handle command and string processing
